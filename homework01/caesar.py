@@ -1,3 +1,6 @@
+"""caesar cipher"""
+
+
 def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
     Encrypts plaintext using a Caesar cipher.
@@ -12,7 +15,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
     ciphertext = ""
     if shift > 26:
-        s = s % 26 
+        s: int = s % 26
     for l in plaintext:
         if 65 <= ord(l) <= 90:
             if ord(l) + shift > 90:
@@ -29,6 +32,8 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     return ciphertext
 
 
+
+
 def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     """
     Decrypts a ciphertext using a Caesar cipher.
@@ -43,7 +48,7 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     """
     plaintext = ""
     if shift > 26:
-        s = s % 26 
+        s: int = s % 26
     for l in ciphertext:
         if 65 <= ord(l) <= 90:
             if ord(l) - shift < 65:
