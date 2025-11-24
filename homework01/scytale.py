@@ -5,12 +5,10 @@ def encrypt_scytale(plaintext, n):
     plaintext = list(plaintext)
     m = (len(plaintext) + n - 1) // n
     matrix = [[] for _ in range(m)]
-    r = 0
 
-    for i in plaintext:
-        matrix[r].append(i)
-        if len(matrix[r]) == n:
-            r += 1
+    for i, char in enumerate(plaintext):
+        r = i // n
+        matrix[r].append(plaintext[char])
 
     if len(matrix[-1]) < n:
         for i in range(n - len(matrix[-1])):

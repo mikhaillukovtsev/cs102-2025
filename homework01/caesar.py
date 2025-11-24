@@ -14,19 +14,22 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     ''
     """
     ciphertext = ""
-    if shift > 26:
-        s: int = s % 26
+    s: int = shift % 26
+    la = ord("a")
+    ha = ord("A")
+    lz = ord("z")
+    hz = ord("Z")
     for l in plaintext:
-        if 65 <= ord(l) <= 90:
-            if ord(l) + shift > 90:
-                ciphertext += chr((ord(l) + shift - 90) + 64)
+        if ha <= ord(l) <= hz:
+            if ord(l) + s > hz:
+                ciphertext += chr((ord(l) + s - hz) + ha - 1)
             else:
-                ciphertext += chr(ord(l) + shift)
-        elif 97 <= ord(l) <= 122:
-            if ord(l) + shift > 122:
-                ciphertext += chr((ord(l) + shift - 122) + 96)
+                ciphertext += chr(ord(l) + s)
+        elif la <= ord(l) <= lz:
+            if ord(l) + s > lz:
+                ciphertext += chr((ord(l) + s - lz) + la - 1)
             else:
-                ciphertext += chr(ord(l) + shift)
+                ciphertext += chr(ord(l) + s)
         else:
             ciphertext += l
     return ciphertext
@@ -45,19 +48,22 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
     plaintext = ""
-    if shift > 26:
-        s: int = s % 26
+    s: int = shift % 26
+    la = ord("a")
+    ha = ord("A")
+    lz = ord("z")
+    hz = ord("Z")
     for l in ciphertext:
-        if 65 <= ord(l) <= 90:
-            if ord(l) - shift < 65:
-                plaintext += chr(91 - (65 - (ord(l) - shift)))
+        if ha <= ord(l) <= hz:
+            if ord(l) - s < ha:
+                plaintext += chr(hz + 1 - (ha - (ord(l) - s)))
             else:
-                plaintext += chr(ord(l) - shift)
-        elif 97 <= ord(l) <= 122:
-            if ord(l) - shift < 97:
-                plaintext += chr(123 - (97 - (ord(l) - shift)))
+                plaintext += chr(ord(l) - s)
+        elif la <= ord(l) <= lz:
+            if ord(l) - s < la:
+                plaintext += chr(lz + 1 - (la - (ord(l) - s)))
             else:
-                plaintext += chr(ord(l) - shift)
+                plaintext += chr(ord(l) - s)
         else:
             plaintext += l
     return plaintext

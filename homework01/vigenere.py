@@ -15,19 +15,23 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     if len(keyword) < len(plaintext):
         keyword *= len(plaintext) // len(keyword) + 1
     i = 0
+    la = ord("a")
+    ha = ord("A")
+    lz = ord("z")
+    hz = ord("Z")
     for l in plaintext:
         if keyword[i].isupper():
-            k = ord(keyword[i]) - 65
+            k = ord(keyword[i]) - ha
         else:
-            k = ord(keyword[i]) - 97
-        if 65 <= ord(l) <= 90:
-            if ord(l) + k > 90:
-                ciphertext += chr((ord(l) + k - 90) + 64)
+            k = ord(keyword[i]) - la
+        if ha <= ord(l) <= hz:
+            if ord(l) + k > hz:
+                ciphertext += chr((ord(l) + k - hz) + ha - 1)
             else:
                 ciphertext += chr(ord(l) + k)
-        elif 97 <= ord(l) <= 122:
-            if ord(l) + k > 122:
-                ciphertext += chr((ord(l) + k - 122) + 96)
+        elif la <= ord(l) <= lz:
+            if ord(l) + k > lz:
+                ciphertext += chr((ord(l) + k - lz) + la - 1)
             else:
                 ciphertext += chr(ord(l) + k)
         else:
@@ -50,19 +54,23 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     if len(keyword) < len(ciphertext):
         keyword *= len(ciphertext) // len(keyword) + 1
     i = 0
+    la = ord("a")
+    ha = ord("A")
+    lz = ord("z")
+    hz = ord("Z")
     for l in ciphertext:
         if keyword[i].isupper():
-            k = ord(keyword[i]) - 65
+            k = ord(keyword[i]) - ha
         else:
-            k = ord(keyword[i]) - 97
-        if 65 <= ord(l) <= 90:
-            if ord(l) - k < 65:
-                plaintext += chr(91 - (65 - (ord(l) - k)))
+            k = ord(keyword[i]) - la
+        if ha <= ord(l) <= hz:
+            if ord(l) - k < ha:
+                plaintext += chr((hz + 1) - (ha - (ord(l) - k)))
             else:
                 plaintext += chr(ord(l) - k)
-        elif 97 <= ord(l) <= 122:
-            if ord(l) - k < 97:
-                plaintext += chr(123 - (97 - (ord(l) - k)))
+        elif la <= ord(l) <= lz:
+            if ord(l) - k < hz:
+                plaintext += chr((lz + 1) - (la - (ord(l) - k)))
             else:
                 plaintext += chr(ord(l) - k)
         else:
