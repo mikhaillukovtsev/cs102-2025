@@ -69,7 +69,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
             else:
                 plaintext += chr(ord(l) - k)
         elif la <= ord(l) <= lz:
-            if ord(l) - k < hz:
+            if ord(l) - k < la:
                 plaintext += chr((lz + 1) - (la - (ord(l) - k)))
             else:
                 plaintext += chr(ord(l) - k)
