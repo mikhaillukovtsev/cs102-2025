@@ -1,4 +1,4 @@
-"""Life GUI module."""
+"""Life GUI module.""" # pylint: disable=no-member
 
 import pygame
 
