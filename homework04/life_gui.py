@@ -1,7 +1,6 @@
-"""Life GUI module.""" # pylint: disable=no-member
+"""Life GUI module."""
 
 import pygame
-
 from life import GameOfLife
 from ui import UI
 
